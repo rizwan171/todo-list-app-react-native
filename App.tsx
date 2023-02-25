@@ -6,10 +6,8 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  TouchableOpacityBase,
   View,
 } from "react-native";
-import TaskItem from "./components/TaskItem";
 import { useEffect, useState } from "react";
 import { Task } from "./types/model/Task";
 import AsyncStorage from "@react-native-async-storage/async-storage";

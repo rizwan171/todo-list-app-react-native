@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, ListRenderItem, ListRenderItemInfo, StyleSheet, TouchableOpacity, View } from "react-native";
+import { FlatList, ListRenderItemInfo, StyleSheet, TouchableOpacity } from "react-native";
 import TaskItem from "./TaskItem";
 import { Task } from "../types/model/Task";
 import { TaskListProps } from "../types/props/TaskListProps";
@@ -14,12 +14,13 @@ const TaskList = ({ tasks, completeTask }: TaskListProps) => {
     );
   };
 
-  return <FlatList data={tasks} renderItem={renderItem} style={styles.tasks} />;
+  return <FlatList data={tasks} contentContainerStyle={styles.list} renderItem={renderItem} style={styles.tasks} />;
 };
 
 const styles = StyleSheet.create({
   tasks: {
     marginTop: 30,
+    marginBottom: 180,
   },
 });
 
