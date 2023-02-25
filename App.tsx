@@ -10,12 +10,46 @@ import {
   View,
 } from "react-native";
 import TaskItem from "./components/TaskItem";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Task } from "./types/model/Task";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function App() {
   const [newTaskText, setNewTaskText] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
+
+  const loadTasks = async () => {
+    try {
+      const tasksJson = await AsyncStorage.getItem("@tasks");
+      if (tasksJson === null) {
+        setTasks([]);
+      } else {
+        const tasks = JSON.parse(tasksJson);
+        setTasks([...tasks]);
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const updateTasks = async (tasks: Task[]) => {
+    try {
+      await AsyncStorage.setItem("@tasks", JSON.stringify(tasks));
+    } catch (e) {
+      console.log(e);
+    }
+    setTasks(tasks);
+  };
+
+  const saveTask = async (newTask: Task) => {
+    const updatedTasks = [...tasks, newTask];
+    try {
+      await AsyncStorage.setItem("@tasks", JSON.stringify(updatedTasks));
+    } catch (e) {
+      console.log(e);
+    }
+    setTasks(updatedTasks);
+  };
 
   const handleAddTask = () => {
     Keyboard.dismiss();
@@ -24,7 +58,7 @@ export default function App() {
 
       completed: false,
     };
-    setTasks([...tasks, newTask]);
+    saveTask(newTask);
     setNewTaskText("");
   };
 
@@ -33,8 +67,12 @@ export default function App() {
     // TODO and also introduce a way to view completed tasks (maybe via side menu or filter button at the top right, maybe both)
     const updatedTasks = [...tasks];
     updatedTasks.splice(index, 1);
-    setTasks(updatedTasks);
+    updateTasks(updatedTasks);
   };
+
+  useEffect(() => {
+    loadTasks();
+  }, []);
 
   return (
     <View style={styles.container}>
