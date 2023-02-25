@@ -13,6 +13,7 @@ import TaskItem from "./components/TaskItem";
 import { useEffect, useState } from "react";
 import { Task } from "./types/model/Task";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import TaskList from "./components/TaskList";
 
 export default function App() {
   const [newTaskText, setNewTaskText] = useState("");
@@ -78,16 +79,7 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Tasks list</Text>
-        <View style={styles.tasks}>
-          {tasks.map((task, index) => {
-            return (
-              // TODO update this to complete when the square icon on left is pressed instead of whole thing
-              <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-                <TaskItem task={task} />
-              </TouchableOpacity>
-            );
-          })}
-        </View>
+        <TaskList tasks={tasks} completeTask={completeTask}/>
       </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === "android" ? "height" : "padding"} style={styles.newTaskWrapper}>
@@ -119,9 +111,6 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: "bold",
-  },
-  tasks: {
-    marginTop: 30,
   },
   newTaskWrapper: {
     position: "absolute",
