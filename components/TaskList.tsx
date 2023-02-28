@@ -7,14 +7,13 @@ import { TaskListProps } from "../types/props/TaskListProps";
 const TaskList = ({ tasks, completeTask }: TaskListProps) => {
   const renderItem = (itemData: ListRenderItemInfo<Task>) => {
     return (
-      // TODO update this to complete when the square icon on left is pressed instead of whole thing
-      <TouchableOpacity key={itemData.index} onPress={() => completeTask(itemData.index)}>
-        <TaskItem task={itemData.item} />
+      <TouchableOpacity key={itemData.index}>
+        <TaskItem task={itemData.item} index={itemData.index} completeTask={completeTask} />
       </TouchableOpacity>
     );
   };
 
-  return <FlatList data={tasks} contentContainerStyle={styles.list} renderItem={renderItem} style={styles.tasks} />;
+  return <FlatList data={tasks} renderItem={renderItem} style={styles.tasks} />;
 };
 
 const styles = StyleSheet.create({

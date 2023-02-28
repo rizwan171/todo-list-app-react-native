@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { TaskItemProps } from "../types/props/TaskItemProps";
 
-const TaskItem = ({ task }: TaskItemProps) => {
+const TaskItem = ({ task, index, completeTask }: TaskItemProps) => {
   return (
     <View style={styles.taskContainer}>
       <View style={styles.complete}>
-        <View style={styles.completeTouchable}></View>
+        <TouchableOpacity style={styles.completeTouchable} onPress={() => completeTask(index)} />
         <Text style={styles.taskText}>{task.text}</Text>
       </View>
       <View style={styles.circle}></View>
