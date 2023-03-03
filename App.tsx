@@ -1,17 +1,8 @@
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useEffect, useState } from "react";
 import { Task } from "./types/model/Task";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import TaskList from "./components/TaskList";
+import TaskList from "./src/components/TaskList";
 
 export default function App() {
   const [newTaskText, setNewTaskText] = useState("");
@@ -77,7 +68,7 @@ export default function App() {
     <View style={styles.container}>
       <View style={styles.tasksWrapper}>
         <Text style={styles.sectionTitle}>Tasks list</Text>
-        <TaskList tasks={tasks} completeTask={completeTask}/>
+        <TaskList tasks={tasks} completeTask={completeTask} />
       </View>
 
       <KeyboardAvoidingView behavior={Platform.OS === "android" ? "height" : "padding"} style={styles.newTaskWrapper}>

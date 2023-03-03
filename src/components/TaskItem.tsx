@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { TaskItemProps } from "../types/props/TaskItemProps";
+import { TaskItemProps } from "../../types/props/TaskItemProps";
 
 const TaskItem = ({ task, index, completeTask }: TaskItemProps) => {
   return (

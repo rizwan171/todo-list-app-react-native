@@ -1,8 +1,8 @@
 import React from "react";
 import { FlatList, ListRenderItemInfo, StyleSheet, TouchableOpacity } from "react-native";
 import TaskItem from "./TaskItem";
-import { Task } from "../types/model/Task";
-import { TaskListProps } from "../types/props/TaskListProps";
+import { Task } from "../../types/model/Task";
+import { TaskListProps } from "../../types/props/TaskListProps";
 
 const TaskList = ({ tasks, completeTask }: TaskListProps) => {
   const renderItem = (itemData: ListRenderItemInfo<Task>) => {
