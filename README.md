@@ -21,6 +21,12 @@
 
 A simple todo list app built in React Native. There are ideas and issues raised to expand on this initial implementation in the future, but no set date or plans currently. This project should be treated as inactive and will not be maintained for the forseeable future.
 
+<div align="center">
+
+![Example](app_screenshot.png)
+
+</div>
+
 ## Prerequisites
 
 - Node
