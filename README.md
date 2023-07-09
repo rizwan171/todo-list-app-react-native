@@ -23,7 +23,7 @@ A simple todo list app built in React Native. There are ideas and issues raised 
 
 <div align="center">
 
-![Example](app_screenshot.png)
+<img src="app_screenshot.png" style="height:650px" />
 
 </div>
 
